@@ -8,8 +8,11 @@ var http = require("http"),
     sysinfo = require('./lib/sysinfo'),
     port = process.env.PORT || 8888;
 
+console.log("Create Server");
 
 http.createServer(function(request, response) {
+console.log("Creating Server");
+
 
     var uri = url.parse(request.url).pathname,
         filename = path.join(process.cwd(), uri);
@@ -50,6 +53,7 @@ http.createServer(function(request, response) {
         }
 
         if (fs.statSync(filename).isDirectory()) filename += '/index.html';
+	console.log("Reading Filename: " + filename );
 
         fs.readFile(filename, "binary", function(err, file) {
             if (err) {
@@ -68,4 +72,4 @@ http.createServer(function(request, response) {
     });
 }).listen(parseInt(port, 10));
 
-console.log("Server running at\n  => http://0.0.0.0:" + port + "/\nCTRL + C to shutdown");
+console.log("Server running");// at\n  => http://0.0.0.0:" + port + "/\nCTRL + C to shutdown");

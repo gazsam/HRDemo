@@ -1,4 +1,7 @@
 applications:
-- name: DoggyAdoption
-  description : Simple demo app that has fun dog pictures.
+- name: HRDemo
+  description : HR Demo
   mem: 256M
+  services:
+    ${name}-db:
+      type: mysql
